@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //代码片段一
+        var name = 'The Window';
+        var object = {
+            name: 'My Object',
+            getNameFunc: function () {
+                return function () {
+                    return this.name;
+                }
+            }
+        }
+        alert(object.getNameFunc()); //输出 funcition () { return this.name }
+        alert(object.getNameFunc()()) //My Object
+        /*
+            添加()执行 直接执行就是window 所以去找了全局 
+         */
+
+        //代码片段二
+        var name2 = 'The Window';
+        var object2 = {
+            name2: 'My Object',
+            getNameFunc: function () {
+                var that = this;
+                return function () {
+                    return that.name2;
+                }
+            }
+        }
+        alert(object2.getNameFunc()()); //My Object
+        /*
+            that 为局部
+            that.name2 所以是内向外找
+         */
+    </script>
+</body>
+
+</html>
